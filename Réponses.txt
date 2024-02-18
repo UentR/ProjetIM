@@ -1,0 +1,13 @@
+1.2.1)  Le rayon des planètes ne changera pas
+1.2.2)  La Terre se situe a 1.5*10^11 m du soleil. La longueur de son orbite est donc de 1.5*10^11 * 2 * pi = 9.43 * 10^8 km.
+        La Terre parcourt cette distance en 1 an, soit 365.25 * 24 * 60 * 60 = 3.154 * 10^7.
+        La vitesse est donc de (9.43 * 10^8) / (3.154 * 10^7) = 29.899 km/s
+
+1.2.3)  Lors d'un allignement des planètes on a \theta1 = \theta2.
+        On calcule donc la période de rotation des planètes avec Période (s) = Rayon (km) *2*pi / Vitesse (km/s)
+        On calcule ensuite la différence entre les fréquences :
+        1 / Période1 - 1 / Période2 = 1 / DeltaRencontre
+        On a donc :
+        DeltaRencontre(s) = R1(km) * R2(km) / | R1(km) * V2(km/s) - R2(km) * V1(km/s) |
+
+        On a un allignement tous les DeltaRencontre.
