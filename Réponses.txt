@@ -11,6 +11,7 @@
         DeltaRencontre(s) = R1(km) * R2(km) / | R1(km) * V2(km/s) - R2(km) * V1(km/s) |
         
         On a un allignement tous les DeltaRencontre.
+        t(j) congru à 0 mod DeltaRencontre(s)/3600/24
 
 1.2.4)
         Pos = (R*cos(theta) - x0, R*sin(theta) - y0)
@@ -41,4 +42,28 @@
                 sin(theta2 - theta1) - sqrt(x0^2 + y0^2) * (sin(theta1 - phi) + sin(phi - theta2)) = 0
 
 
+
+1.2.5)  
+        PosE_P1 = -R1*(cos(theta1), sin(theta1))
+
+1.2.6)  
+        PosP2_P1 = R2*(cos(theta2), sin(theta2)) - R1*(cos(theta1), sin(theta1))
+        La courbe n'est pas un cercle.
+
+1.2.7)
+        PosS_P2 = PosS_P1 - PosP1_P2
+        PosS_P2 = RS*(cos(thetaS), sin(thetaS)) - R1*(cos(theta1), sin(theta1)) + R2*(cos(theta2), sin(theta2))
+
+1.2.8)  Eclipse :
+                theta1 = pi + theta2                    mod 2pi
+                V1/R1 * t = pi - VS*RS * t              mod 2pi
+                V1/R1 * t - VS*RS * t = pi              mod 2pi
+                (V1*RS - VS*R1)/(RS*R1) * t = pi        mod 2pi
+                t = pi * (RS*R1)/(V1*RS - VS*R1)        mod 2pi
+
+1.2.9)  Sur Terre théoriquement :
+        t(s) = pi * (3.844*10^8*1.49*10^11)/(30/3.6 * 3.844*10^8 - 16.7/3.6 * 1.49*10^11) mod 2pi
+        t(s) = pi * -83250494.1924 mod 2pi
+        t(jour) = pi * -963 mod 2pi
+        t(jour) = 1.42192729056 mod 2pi
         
