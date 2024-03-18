@@ -2,32 +2,39 @@ import math
 import numpy as np
 import matplotlib.pyplot as plt
 
-def orbite_calculator(R1, R2, R3, V1, V2, V3):
-    Dangle1 = V1/R1
-    Dangle2 = V2/R2
-    Dangle3 = V3/R3
+def orbite_calculator(*args):
+    N = len(args)
+    Dangle = []
+    for i in range(N//2):
+        Dangle.append(args[N//2+i]/args[i])
+    Coeff = [1, -1, 1]
     def calculate_orbit_position(time):
-        theta1 = Dangle1*time
-        theta2 = Dangle2*time
-        theta3 = Dangle3*time
-        x = R2*math.cos(theta2) - R1*math.cos(theta1) + R3*math.cos(theta3)
-        y = R2*math.sin(theta2) - R1*math.sin(theta1) + R3*math.sin(theta3)
+        Theta = [Dangle[i]*time for i in range(N//2)]
+        x = 0
+        y = 0
+        for i in range(N//2):
+            x += args[i]*math.cos(Theta[i])*Coeff[i]
+            y += args[i]*math.sin(Theta[i])*Coeff[i]
         return x, y
 
     return calculate_orbit_position
 
 def main():
     R1 = 149
-    R2 = 10
-    R3 = 384
+    R2 = 0.3
+    R3 = 228
     V1 = 3
-    V2 = 9.5
-    V3 = 1.55
-    orbit_calculator = orbite_calculator(R1, R2, R3, V1, V2, V3)
-    time = np.linspace(0, 1570, 100000)
-    Pos = [orbit_calculator(t) for t in time]
+    V2 = 1.6
+    V3 = 2.4
+    lune_p2 = orbite_calculator(R2, R1, R3, V2, V1, V3)
+    terre = orbite_calculator(R1, V1)
+    lune_p1 = orbite_calculator(R2, R1, V2, V1)
+    time = np.linspace(0, 13750, 100000)
+    Pos = [lune_p1(t) for t in time]
     x, y = zip(*Pos)
-    plt.plot(x, y, label="Orbite de la Lune autour du Soleil")
+    plt.plot(x, y)
+    
+    
     plt.rcParams['axes.facecolor'] = 'white'
     plt.rcParams['figure.facecolor'] = 'white'
     plt.show()
