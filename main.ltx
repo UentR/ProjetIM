@@ -1,0 +1,148 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{amsmath}
+\usepackage{changepage}
+\usepackage{graphicx}
+
+\title{Projet IM}
+\author{Ivan Kharkov - Quentin Riggi - Gustave Vial}
+\date{Mars 2024}
+
+\usepackage{geometry}
+\geometry{a4paper, total={171mm, 257mm}, left=30mm, right=30mm, top=30mm, bottom=20mm}
+
+\begin{document}
+
+\maketitle
+
+\section{Partie Théorique}
+
+\hspace{15pt}\textbf{Introduction} \\
+Le projet math info "Planète" présente une façon de modaliser un système planétaire. \\
+Le but  de modéliser un système planétaire est de pouvoir prédire et comprendre les événements astronomiques de notre système solaire. Par exemple dans le projet nous manipulons des formules mathématiques dans le but de déterminer les trajectoires des planètes et de satellites, ainsi connaître leurs positions dans l'espace. Cela nous est utile, par exemple, lorsque l'on veut prédire les dates d'une éclipse, que nous verrons dans cette partie.
+
+\vspace{20pt}
+
+\textbf{Questions}
+
+\hspace{-15pt}1. Dans un modèle simplifié circulaire, les rayons n'évoluent donc pas et les angles croissent de manière linéaire.
+\vspace{5pt}\\
+En utilisant ce modèle, on peut calculer la vitesse de révolution de la Terre.
+\vspace{5pt}\\
+2. La Terre se situe a $1.5*10^{11}$m du soleil. La longueur de son orbite est donc de $1.5*10^{11} * 2 \pi = 9.43 *10^8$ km.\\
+        La Terre parcourt cette distance en 1 an, soit $365.25 * 24 * 60 * 60 = 3.154 * 10^7$s.
+        La vitesse de la Terre autour du soleil est donc de $\frac{9.43 * 10^8}{3.154 * 10^7} = 29.899$ km.s$^{-1}$
+\vspace{5pt}\\
+\\
+Nous avons déterminé la vitesse de la Terre autour du soleil. Nous nous intéressons maintenant à l'observation de ce phénomène à un point fixé. Plus précisément nous allons observer à quel moment de ce point d'observation nous pouvons apercevoir l'alignement des planètes P1 et P2.
+\\
+\vspace{5pt}\\
+3. Lors d'un allignement des planètes on a $\theta_1 = \theta_2$.
+
+        On calcule donc la période de rotation des planètes avec la période :
+        \vspace{5pt}
+        \\ $\tau_i = \frac{R_i\,(km)\,*\,2\pi}{v_i\,(km.s^{-1})} (s)$ \\
+        \vspace{5pt}
+        On calcule ensuite la différence entre les fréquences :
+        \vspace{5pt}
+        $\frac{1}{\tau_1} -  \frac{1}{\tau_2} = \frac{1}{\delta_{rencontre}}$
+        \vspace{5pt}
+        \\On a donc :
+        \vspace{5pt}
+        $\delta_{rencontre}(s) = \frac{R1(km) * R2(km)}{ | R1(km) * V2(km.s^{-1}) - R2(km) * V1(km.s^{-1})| }$
+        \vspace{5pt}
+        \\On a un allignement tous les $\delta_{rencontre}$.
+        \vspace{5pt}
+        \\t (jour) $\equiv$ 0 (mod $\frac{\delta_{rencontre}}{86400}$)
+\vspace{5pt}\\
+\\
+Maintenant que nous avons trouvé l'équation pour l'alignement des planètes P1 et P2 par rapport à un observateur fixe au centre du repère, passons à la quatrième question. Ici, l'observateur reste situé en un point spécifique mais non fixe dans l'espace. Nous devons donc généraliser notre approche pour prendre en compte la variation des coordonnées de l'observateur au fil du temps. En ajustant notre équation d'alignement des planètes en conséquence, nous pourrons déterminer les moments d'alignement lorsque l'observateur se déplace dans son orbite ou subit d'autres mouvements.
+
+\newpage
+
+\hspace{-15pt}4. $Pos_i = (R_i\,\cos(\theta_i) - x_0,\:R_i\,\sin(\theta_i) - y_0)$ \\
+Allignement si :
+\vspace{-17pt}
+\begin{adjustwidth}{-2.5cm}{}
+\begin{flalign*}
+                &(R_1\,\cos(\theta_1)-x_0) * (R_2sin(\theta_2) - y_0) - (R_2\cos(\theta_2)-x_0) * (R_1\sin(\theta_1)-y_0) &= 0 \\
+                &R_1\,R_2\,\cos(\theta_1)\,\sin(\theta_2) - R_2\,x_0\,\sin(\theta_2) - R_1\,y_0\,\cos(\theta_1) + x_0\,y_0 - R_2\,R_1\,\cos(\theta_2)\,\sin(\theta_1) + R_1\,x_0\,\sin(\theta_1) + R_2\,y_0\,\cos(\theta_2) - x_0\,y_0 &= 0 \\
+                &R_1*R_2*(\cos(\theta_1)*\sin(\theta_2) - \cos(\theta_2)*\sin(\theta_1)) - x_0(R_2*\sin(\theta_2) - R_1*\sin(\theta_1)) - y_0(R_1*\cos(\theta_1) - R_2*\cos(\theta_2)) &= 0
+\end{flalign*}
+\end{adjustwidth}
+
+\vspace{15pt}
+Les résultats de la question 4, donnant une équation d'alignement des planètes par rapport à un observateur fixé, sont directement utilisés pour résoudre la question 5. Dans cette dernière, nous déterminons l'équation de mouvement de l'étoile E pour un observateur sur la planète P1. En utilisant les coordonnées polaires de l'observateur et de l'étoile E, ainsi que l'équation d'alignement établie précédemment, nous formulons une relation précise entre la position de l'étoile E et celle de l'observateur sur la planète P1, résolvant ainsi la question 5 de manière rigoureuse.
+\vspace{5pt}\\
+
+\hspace{-15pt}5. L’équation de mouvement de l’étoile E pour un observateur situé sur la planète P1, en utilisant les coordonnées polaires :
+$Pos^{E}_{P_1} = -R_1*(\cos(\theta_1), \sin(\theta_1))$
+
+\vspace{5pt}
+On peut donc par exemple trouver la position du satellite par rapport au soleil.
+\begin{figure}
+    \centering
+    \includegraphics[width=0.75\linewidth]{OrbiteSimul.png}
+    \caption{Orbite de P1 et du satellite par rapport au Soleil}
+    \label{fig:Orbite1}
+\end{figure}
+\vspace{5pt}
+
+\hspace{-15pt}6. Voici l’équation du mouvement apparent de $P_2$ vu à partir de $P_1$, en utilisant les coordonnées polaires :\\
+$Pos^{P_2}_{P_1} = R_2*(\cos(\theta_2),\:\sin(\theta_2)) - R_1*(\cos(\theta_1),\:\sin(\theta_2))$
+\\
+La courbe\textbf{ n'est pas un cercle.}
+
+\vspace{5pt}
+Nous venons d'étudier le mouvement de P2 du point de vue de P1 avec le modèle géocentrique autrefois utlisé.
+On introduit maintenant un satellite S en orbite autour de P1 et nous allons nous intéresser à l'équation de mouvement du satellite S autoure de P1 du point de vu de 
+\vspace{5pt}\\
+
+\hspace{-15pt}7. On a :
+\begin{align*}
+    Pos^S_{P_2} &= Pos^S_{P_1} - Pos^{P_1}_{P_2}\\
+    Pos^S_{P_2} &= R_S*(\cos(\theta_S),\:\sin(\theta_S)) - R_1*(\cos(\theta_1),\:\sin(\theta_1)) + R_2*(\cos(\theta_2),\:\sin(\theta_2))    
+\end{align*}
+
+\vspace{5pt}
+\begin{figure}
+    \centering
+    \includegraphics[width=0.75\linewidth]{OrbiteSimul2.png}
+    \caption{Orbite d'un satellite par rapport à P1}
+    \label{fig:enter-label}
+\end{figure}
+\vspace{5pt}
+
+\hspace{-15pt}8.
+\text{Eclipse :}
+\begin{align*}
+\theta_1 &\equiv \pi + \theta_2 \quad &&\pmod{2\pi} \\
+\frac{V1}{R1} \cdot t &\equiv \pi - VS \cdot RS \cdot t \quad &&\pmod{2\pi} \\
+\frac{V1}{R1} \cdot t - VS \cdot RS \cdot t &\equiv \pi \quad &&\pmod{2\pi} \\
+\frac{V1 \cdot RS - VS \cdot R1}{RS \cdot R1} \cdot t &\equiv \pi \quad &&\pmod{2\pi} \\
+t &\equiv \pi \cdot \frac{RS \cdot R1}{V1 \cdot RS - VS \cdot R1} \quad &&\pmod{2\pi}
+\end{align*}
+
+\vspace{5pt}\
+Temp
+\vspace{5pt}\\
+
+\hspace{-15pt}9.
+\text{Sur Terre théoriquement :}
+\begin{alignat*}{2}
+t(s) &\equiv \pi\,\frac{3.844*10^8*1.49*10^{11}}{\frac{30}{3.6}*3.844*10^8 - \frac{16.7}{3.6} * 1.49*10^{11}} \quad &&\pmod{2\pi}\\
+t(s) &\equiv -83250494.1924\:\pi \quad &&\pmod{2\pi}\\
+t(jour) &\equiv -963\:\pi \quad &&\pmod{2\pi}\\
+t(jour) &\equiv 1.42192729056\:\pi \quad &&\pmod{2\pi}\\
+t(jour) &\equiv 4.46 \quad &&\pmod{2\pi}\\
+\end{alignat*}
+
+\newpage
+
+\textbf{Conclusion} \\
+Nous avons pour l'instant étudié les mouvements d'astres sur des orbites parfaitement circulaires, ce qui ne permet donc pas d'avoir une simulation parfaite de la réalité. Dans la partie 2, nous pourrons étendre notre travail notamment grâce à des animations du système solaire, une modélisation d'un point de vu géocentrique voir même une simulation interactive et cela grâce aux différents résultats mis en équations dans la partie théorique.
+
+
+
+
+\end{document}
