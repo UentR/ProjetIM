@@ -37,6 +37,10 @@ def main():
     x, y = terre_P1(time)
     fig, ax = plt.subplots(figsize=(10, 10))
     ax.plot(x, y)
+    # remove the axis
+    ax.axis('off')
+    # set the aspect of the plot to be equal
+    ax.set_aspect('equal', adjustable='datalim')
     
     
     fig.show()
