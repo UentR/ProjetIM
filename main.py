@@ -2,11 +2,21 @@ import math
 import numpy as np
 import matplotlib.pyplot as plt
 
+from dataclasses import dataclass
+
+@dataclass
+class Planete:
+    Radius: float
+    Speed: float
+    Angle: float = 0
+    def __post_init__(self):
+        self.Angle = self.Radius/self.Speed
+
 def orbite_calculator(*args):
-    N = len(args)//2
+    N = len(args)
     Dangle = np.zeros(N)
     for i in range(N):
-        Dangle[i] = args[N+i]/args[i]
+        Dangle[i] = args[i].Angle
     def calculate_orbit_position(time):
         time = np.repeat(time, N, axis=0).reshape(N, time.shape[0])
         Theta = time*Dangle[:, None]
@@ -16,23 +26,20 @@ def orbite_calculator(*args):
         y = 0
         Coeff = 1
         for i in range(N):
-            x += args[i]*COS[i]*Coeff
-            y += args[i]*SIN[i]*Coeff
+            x += args[i].Radius*COS[i]*Coeff
+            y += args[i].Radius*SIN[i]*Coeff
             Coeff *= -1
         return x, y
 
     return calculate_orbit_position
 
 def main():
-    R1 = 149
-    R2 = 0.3
-    R3 = 228*3
-    V1 = 2.735*4
-    V2 = 1.6
-    V3 = 1.4
-    # lune_p2 = orbite_calculator(R2, R1, R3, V2, V1, V3)
-    terre_P1 = orbite_calculator(R1, R3, V1, V3)
-    lune_p1 = orbite_calculator(R2, R1, V2, V1)
+    Terre = Planete(149, 2.735*4)
+    Lune = Planete(0.3, 1.6)
+    Mars = Planete(228*3, 1.4)
+    lune_p2 = orbite_calculator(Lune, Terre, Mars)
+    terre_P1 = orbite_calculator(Terre, Mars)
+    lune_p1 = orbite_calculator(Lune, Terre)
     time = np.linspace(0, 2055*3, 100000)
     x, y = terre_P1(time)
     fig, ax = plt.subplots(figsize=(10, 10))
