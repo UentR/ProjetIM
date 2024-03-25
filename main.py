@@ -10,7 +10,7 @@ class Planete:
     Speed: float
     Angle: float = 0
     def __post_init__(self):
-        self.Angle = self.Radius/self.Speed
+        self.Angle = self.Speed/self.Radius
 
 def orbite_calculator(*args):
     N = len(args)
@@ -19,6 +19,7 @@ def orbite_calculator(*args):
         Dangle[i] = args[i].Angle
     def calculate_orbit_position(time):
         time = np.repeat(time, N, axis=0).reshape(N, time.shape[0])
+        print(time)
         Theta = time*Dangle[:, None]
         COS = np.cos(Theta)
         SIN = np.sin(Theta)
@@ -40,17 +41,17 @@ def main():
     lune_p2 = orbite_calculator(Lune, Terre, Mars)
     terre_P1 = orbite_calculator(Terre, Mars)
     lune_p1 = orbite_calculator(Lune, Terre)
-    time = np.linspace(0, 2055*3, 100000)
-    x, y = terre_P1(time)
+    time = np.linspace(0, 2055*5, 100000)
+    x, y = lune_p2(time)
     fig, ax = plt.subplots(figsize=(10, 10))
     ax.plot(x, y)
     # remove the axis
-    ax.axis('off')
+    # ax.axis('off')
     # set the aspect of the plot to be equal
     ax.set_aspect('equal', adjustable='datalim')
     
     
-    fig.show()
+    plt.show()
     fig.savefig("terre_p1.png")
 
 
